@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  workorder.api:
+    image: ${DOCKER_REGISTRY-}workorderapi
+    build:
+      context: .
+      dockerfile: Workorder.API/Dockerfile
+
+  workorder.client:
+    image: ${DOCKER_REGISTRY-}workorderclient
+    build:
+      context: .
+      dockerfile: Workorder.Client/Dockerfile
+
+  labor.db:
+    image: mongo

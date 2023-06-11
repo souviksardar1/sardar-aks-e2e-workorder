@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  workorder.api:
+    container_name: workorderapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=mongodb://labordb:27017"
+    depends_on: 
+      - labor.db
+    ports:
+      - "7001:80"
+
+  workorder.client:
+    container_name: workorderclient
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "LaborAPIUrl=http://workorderapi"
+    depends_on: 
+      - labor.db
+      - workorder.api
+    ports:
+      - "8001:80"
+
+  labor.db:
+    container_name: labordb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
