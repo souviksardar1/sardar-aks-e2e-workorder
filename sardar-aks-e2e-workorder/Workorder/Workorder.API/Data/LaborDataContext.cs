@@ -30,7 +30,7 @@ namespace Workorder.API.Data
 
             new Labor
             {
-                Name = "Souvik Sardar",
+                Name = "Souvik Sardar1",
                 Category = "Developer",
                 SalaryPerDay = 1100.7
             },

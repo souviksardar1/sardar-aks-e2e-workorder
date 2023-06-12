@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workorderapi-deployment
+  labels:
+    app: workorderapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workorderapi
+  template:
+    metadata:
+      labels:
+        app: workorderapi
+    spec:
+      containers:
+      - name: workorderapi
+        image: souviksardar/workorder-api:v1
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: DatabaseSettings__ConnectionString
+          valueFrom:
+              configMapKeyRef:
+                name: mongo-configmap
+                key: connection__string
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workorderapi-service
+spec:
+  type: NodePort
+  selector:
+    app: workorderapi
+  ports:
+   - protocol: TCP
+     port: 7001
+     targetPort: 80
+     nodePort : 31000              
