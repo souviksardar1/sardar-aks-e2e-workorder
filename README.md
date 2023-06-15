@@ -21,7 +21,7 @@ You can check if the status of the containers using below command.
  
 ## 1. Local kubernetes Run:: 
 If you have docker desktop and want to run the kubernetes pods in docker desktop host then you need to enable kubernetes first. and the same can be done from docker desktop app as below. 
-<img width="620" alt="image" src="https://github.com/souviksardar1/sardar-aks-e2e-workorder/assets/52888363/4e80fc9c-3058-466a-b1d5-bbf5b9f4e05e">
+<img width="630" alt="image" src="https://github.com/souviksardar1/sardar-aks-e2e-workorder/assets/52888363/4e80fc9c-3058-466a-b1d5-bbf5b9f4e05e">
 
 
 
