@@ -12,6 +12,7 @@ Once the containers will be running, check the port number from docker-compose.o
 You can create and run the containers using below command as well.
 
 > docker-compose -f \\....\sardar-workorder\sardar-aks-e2e-workorder\Workorder\docker-compose.yml -f \\....\sardar-workorder\sardar-aks-e2e-workorder\Workorder\docker-compose.override.yml up -d
+
 -d is used to run in background (in detached mode)
  
 ## 1. Local kubernetes Run:: 
