@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workorderclient-deployment
+  labels:
+    name: workorderclient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workorderclient
+  template:
+    metadata:
+      labels:
+        app: workorderclient
+    spec:
+      containers:
+      - name: workorderclient
+        image: workorderacrbysouvik.azurecr.io/workorder-client:v1
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "0.1"
+          limits:
+            memory: "256Mi"
+            cpu: "0.3"
+        ports:
+        - containerPort: 80
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development 
+          - name: LaborAPIUrl
+            valueFrom:
+              configMapKeyRef:
+                key: workorderapi__url
+                name: workorderapi-configmap
+      imagePullSecrets:
+          - name: workordersecretbysouvik          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workorderclient-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: workorderclient
+  ports:
+   - protocol: TCP
+     port: 80
+     #targetPort: 80
+     #nodePort: 32000 no need as type: LoadBalancer

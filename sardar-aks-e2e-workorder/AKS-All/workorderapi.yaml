@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workorderapi-deployment
+  labels:
+    app: workorderapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workorderapi
+  template:
+    metadata:
+      labels:
+        app: workorderapi
+    spec:
+      containers:
+      - name: workorderapi
+        image: workorderacrbysouvik.azurecr.io/workorder-api:v1
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "0.1"
+          limits:
+            memory: "256Mi"
+            cpu: "0.3"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: DatabaseSettings__ConnectionString
+          valueFrom:
+              configMapKeyRef:
+                name: mongo-configmap
+                key: connection__string
+      imagePullSecrets:
+          - name: workordersecretbysouvik          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workorderapi-service
+spec:
+  #type: NodePort #need to local but by default type is CLusterIp and new port will be assined by AKS
+  selector:
+    app: workorderapi
+  ports:
+   - protocol: TCP
+     port: 80 

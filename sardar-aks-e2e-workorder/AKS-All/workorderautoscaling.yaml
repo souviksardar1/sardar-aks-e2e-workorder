@@ -1,0 +1,25 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: workorderapi-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: workorderapi-deployment
+  targetCPUUtilizationPercentage: 50  
+  minReplicas: 3
+  maxReplicas: 4
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: workorderclient-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: workorderclient-deployment
+  targetCPUUtilizationPercentage: 70  
+  minReplicas: 3
+  maxReplicas: 5
