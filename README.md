@@ -30,7 +30,9 @@ Check the status of the pods using,
 
 > kubectl get pods
 
+Check the nodePort in deployment yaml and if your pods are up and running, you will see the microservices in localhost running via docker desktop kubernetes. (Ex - API will be up here, http://localhost:31000/swagger/index.html)
 
+NOTE: In kubernetes NodePort is used to check application locally.
 
 
 
