@@ -23,6 +23,13 @@ You can check if the status of the containers using below command.
 If you have docker desktop and want to run the kubernetes pods in docker desktop host then you need to enable kubernetes first. and the same can be done from docker desktop app as below. 
 <img width="630" alt="image" src="https://github.com/souviksardar1/sardar-aks-e2e-workorder/assets/52888363/4e80fc9c-3058-466a-b1d5-bbf5b9f4e05e">
 
+Once local k8s will be up and running, you can run your project in local kubernetes. We need manifest files to run the pods. I have written all the manifest files required for this project in 'kubernetes-Local' folder. You can check and run each yaml files one by one but to run the pods in one go you can apply the 'kubernetes-Local' folder directly using below command.
+> kubectl apply -f C:\Souvik-P\sardar-workorder\sardar-aks-e2e-workorder\kubernetes-Local
+Check the status of the pods using,
+> kubectl get pods
+
+
+
 
 
 
