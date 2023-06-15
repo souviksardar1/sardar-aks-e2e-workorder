@@ -14,5 +14,9 @@ You can create and run the containers using below command as well.
 > docker-compose -f \\....\sardar-workorder\sardar-aks-e2e-workorder\Workorder\docker-compose.yml -f \\....\sardar-workorder\sardar-aks-e2e-workorder\Workorder\docker-compose.override.yml up -d
 
 -d is used to run in background (in detached mode)
+
+You can check if the status of the containers using below command.
+
+> docker ps
  
 ## 1. Local kubernetes Run:: 
